@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Paper Lima Menit</title>
+{% endblock %}
+
+{% block body %}
+<div class="container-contact100">
+    <div class="wrap-contact100">
+        <form class="contact100-form validate-form" action="/" method="POST">
+            <span class="contact100-form-title">
+                Deteksi Diabetes!
+            </span>
+
+            <div class="wrap-input100 validate-input">
+                <span class="label-input100">Banyak Melahirkan</span>
+                <input class="input100" type="text" placeholder="Masukan jumlah melahirkan" name="melahirkan" id="melahirkan" required>
+                <span class="focus-input100"></span>
+            </div>
+
+            <div class="wrap-input100 validate-input" >
+                <span class="label-input100">Kadar Glukosa</span>
+                <input class="input100" type="text" placeholder="Masukan kadar glukosa" name="glukosa" id="glukosa" required>
+                <span class="focus-input100"></span>
+            </div>
+
+            <div class="wrap-input100 validate-input" >
+                <span class="label-input100">Tekanan Darah</span>
+                <input class="input100" type="text" placeholder="Masukan tekanan darah" name="darah" id="darah" required>
+                <span class="focus-input100"></span>
+            </div>
+
+            <div class="wrap-input100 validate-input" >
+                <span class="label-input100">Tebal Kulit</span>
+                <input class="input100" type="text" placeholder="Masukan ketebalan kulit" name="kulit" id="kulit" required>
+                <span class="focus-input100"></span>
+            </div>
+
+            <div class="wrap-input100 validate-input" >
+                <span class="label-input100">Kadar Insulin</span>
+                <input class="input100" type="text" placeholder="Masukan kadar insulin" name="insulin" id="insulin" required>
+                <span class="focus-input100"></span>
+            </div>
+
+            <div class="wrap-input100 validate-input" >
+                <span class="label-input100">BMI</span>
+                <input class="input100" type="text" placeholder="Masukan BMI" name="bmi" id="bmi" required>
+                <span class="focus-input100"></span>
+            </div>
+
+            <div class="wrap-input100 validate-input" >
+                <span class="label-input100">Riwayat Diabetes</span>
+                <input class="input100" type="text" placeholder="Masukan derajat diabetes keturunan" name="riwayat" id="riwayat" required>
+                <span class="focus-input100"></span>
+            </div>
+
+            <div class="wrap-input100 validate-input">
+                <span class="label-input100">Umur</span>
+                <input class="input100" type="text" placeholder="Masukan umur" name="umur" id="umur" required>
+                <span class="focus-input100"></span>
+            </div>
+
+            <div class="container-contact100-form-btn">
+                <div class="wrap-contact100-form-btn">
+                    <div class="contact100-form-bgbtn"></div>
+                    <button class="contact100-form-btn">
+                        <span>
+                            Prediksi
+                            <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}
