@@ -300,47 +300,47 @@ def resize_image(df, width= 300, height= 300):
         cv2.imwrite(result_path, image_resize)
 
 # Fungsi untuk augmentasi gambar
-@st.cache_data(ttl=3600, show_spinner="Augmentation images is running...")  # 👈 Cache data
-def augment_image(PATH, count_):
-    # Buat objek ImageDataGenerator
-    datagen = ImageDataGenerator(zoom_range= [0.7, 1.2])
-    # Dapatkan daftar citra dalam PATH
-    lst_img = os.listdir(PATH)
-    # Acak daftar, agar citra yg diaugmentasi bersifat acak
-    random.shuffle(lst_img)
-    # Nilai dari jumlah kebutuhan data yg perlu di sintesis
-    n_augment = count_ - len(lst_img)
-    # Variabel bantu untuk indexing data citra
-    idx = 0
-    # Loop untuk melakukan augmentasi pada sejumlah data citra
-    for i in range(n_augment):
-        # Cek nilai indeks, jika melebihi total gambar
-        # Maka ubah nilai index jadi 0
-        if idx >= len(lst_img):
-            idx = 0
-        # Ambil nama gambar
-        filename = lst_img[idx]
-        # Ambil PATH citra
-        filepath = os.path.join(PATH, filename)
-        # Baca data gambar
-        img = cv2.imread(filepath)
-        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+# @st.cache_data(ttl=3600, show_spinner="Augmentation images is running...")  # 👈 Cache data
+# def augment_image(PATH, count_):
+#     # Buat objek ImageDataGenerator
+#     datagen = ImageDataGenerator(zoom_range= [0.7, 1.2])
+#     # Dapatkan daftar citra dalam PATH
+#     lst_img = os.listdir(PATH)
+#     # Acak daftar, agar citra yg diaugmentasi bersifat acak
+#     random.shuffle(lst_img)
+#     # Nilai dari jumlah kebutuhan data yg perlu di sintesis
+#     n_augment = count_ - len(lst_img)
+#     # Variabel bantu untuk indexing data citra
+#     idx = 0
+#     # Loop untuk melakukan augmentasi pada sejumlah data citra
+#     for i in range(n_augment):
+#         # Cek nilai indeks, jika melebihi total gambar
+#         # Maka ubah nilai index jadi 0
+#         if idx >= len(lst_img):
+#             idx = 0
+#         # Ambil nama gambar
+#         filename = lst_img[idx]
+#         # Ambil PATH citra
+#         filepath = os.path.join(PATH, filename)
+#         # Baca data gambar
+#         img = cv2.imread(filepath)
+#         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
-        # Ubah dimensi citra jadi (1, H, W, channels) karena ImageDataGenerator butuh bentuk batch
-        img_batch = img.reshape((1,) + img.shape)
-        # Buat generator augmentasi
-        augmented_generator = datagen.flow(img_batch, batch_size= 1)
-        # Buat gambar augmentasinya sebanyak 1
-        augmented_img = [next(augmented_generator)[0].astype(np.uint8) for _ in range(1)]
+#         # Ubah dimensi citra jadi (1, H, W, channels) karena ImageDataGenerator butuh bentuk batch
+#         img_batch = img.reshape((1,) + img.shape)
+#         # Buat generator augmentasi
+#         augmented_generator = datagen.flow(img_batch, batch_size= 1)
+#         # Buat gambar augmentasinya sebanyak 1
+#         augmented_img = [next(augmented_generator)[0].astype(np.uint8) for _ in range(1)]
 
-        # Simpan gambar yg telah di Zoom
-        cv2.imwrite(
-            os.path.join(PATH, f"augmented_{i}_{filename}"),
-            np.array(augmented_img[0]),
-        )
+#         # Simpan gambar yg telah di Zoom
+#         cv2.imwrite(
+#             os.path.join(PATH, f"augmented_{i}_{filename}"),
+#             np.array(augmented_img[0]),
+#         )
 
-        # Increment
-        idx += 1
+#         # Increment
+#         idx += 1
 
 # Function untuk ekstraksi fitur HSV dari gambar
 @st.cache_data(ttl=3600, show_spinner="Extraction features is running...")  # 👈 Cache data
@@ -362,9 +362,9 @@ def extraction_HSV_features(PATH, label):
         img_HSV = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
         # Dapatkan nilai median untuk setiap channel warna
-        med_H = np.median(img_HSV[:, :, 0])
-        med_S = np.median(img_HSV[:, :, 1])
-        med_V = np.median(img_HSV[:, :, 2])
+        med_H = np.mean(img_HSV[:, :, 0])
+        med_S = np.mean(img_HSV[:, :, 1])
+        med_V = np.mean(img_HSV[:, :, 2])
 
         # Simpan nilai median masing-masing channel ke dalam list terkait
         hue_ftr.append(med_H)
@@ -428,7 +428,7 @@ def train_model_KNN(X_train, y_train, X_test, neighbor):
     return y_pred
 
 # Function untuk split k fold
-def fold_split(features, labels, k= 5, neighbor= 5):
+def fold_split(features, labels, k= 10, neighbor= 3):
     # Panggil objek KFold
     kfold = KFold(n_splits= k, shuffle= True, random_state= 42)
     
@@ -437,7 +437,7 @@ def fold_split(features, labels, k= 5, neighbor= 5):
     all_score = list()
     #all_X_test = list()
 
-    temp_score = 0
+    # temp_score = 0
     mk_dir("processed/picklefile")
 
     # Loop KFold
@@ -458,16 +458,16 @@ def fold_split(features, labels, k= 5, neighbor= 5):
 
         knn = KNeighborsClassifier(n_neighbors= neighbor)
         knn.fit(X_train, y_train)
-        score = knn.score(X_test, y_test)
+        # score = knn.score(X_test, y_test)
         y_score = knn.predict_proba(X_test)
 
         all_score.append(y_score)
 
-        if temp_score < score:
-            temp_score = score
-            # save model
-            with open("processed/picklefile/knn_model.pkl", "wb") as file:
-                pickle.dump(knn, file)
+        # if temp_score < score:
+        #     temp_score = score
+        #     # save model
+        #     with open("processed/picklefile/knn_model.pkl", "wb") as file:
+        #         pickle.dump(knn, file)
     
     # Menyimpan list ke dalam file lokal menggunakan pickle
     with open('processed/picklefile/all_y_test.pkl', 'wb') as file:
