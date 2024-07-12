@@ -13,7 +13,7 @@ import dummy
 from functions import *
 # Untuk menyimpan dan memuat data sebagai objek biner
 import pickle
-
+    
 from sklearn.metrics import roc_curve, auc
 from sklearn.metrics import roc_auc_score
 from sklearn.preprocessing import label_binarize
@@ -28,7 +28,7 @@ st.set_option("deprecation.showPyplotGlobalUse", False)
 
 # Global set untuk setting halaman
 st.set_page_config(
-    page_title= "Siti Hamlatun",
+    page_title= "Rama priyadi",
     layout= "wide",
     page_icon= "globe",
     initial_sidebar_state= "expanded",
@@ -42,7 +42,7 @@ st.markdown(
         #MainMenu {visibility: hidden;}
         header {visibility: hidden;}
         footer {visibility: hidden;}
-        .st-emotion-cache-1jicfl2 {padding-top: 1rem;}
+        .st-emotion-cache-z5fcl4 {padding-top: 1rem;}
     </style>
     ''',
     unsafe_allow_html= True,
@@ -61,8 +61,8 @@ with open("assets\css\style.css") as f:
 if "stts_resize" not in ss:
     ss.stts_resize = False
 
-if "stts_augment" not in ss:
-    ss.stts_augment = False
+# if "stts_augment" not in ss:
+#     ss.stts_augment = False
 
 if "stts_clf" not in ss:
     ss.stts_clf = False
@@ -86,8 +86,8 @@ def main():
     with st.sidebar:
         selected = option_menu(
             "",
-            ["Beranda", "Preprocessing", "Augmentasi", "Ekstraksi Fitur", "Klasifikasi", "Evaluasi", "Prediksi"],
-            icons= ["house", "aspect-ratio", "images", "box-arrow-up", "tags", "bar-chart", ""],
+            ["Beranda", "Preprocessing", "Ekstraksi Fitur", "Klasifikasi", "Evaluasi", "Prediksi"],
+            icons= ["house", "aspect-ratio", "images", "box-arrow-up", "tags", "bar-chart"],
             styles={
                 "container": {"padding": "0 !important", "background-color": "#E6E6EA"},
                 "icon": {"color": "#020122", "font-size": "18px"},
@@ -96,7 +96,7 @@ def main():
             }
         )
 
-        st.caption("Copyright © 2024 | Siti Hamlatun")
+        st.caption("Rama priyadi")
 
     # Inisialisasi container
     with st.container():
@@ -112,7 +112,7 @@ def main():
                 st.markdown(
                     '''
                     <h3>
-                        Klasifikasi Citra Penyakit Pada Daun Kencur Dengan Ekstraksi Fitur Warna HSV Menggunakan K-Nearest Neighbor
+                        KLASIFIKASI PENYAKIT PADA DAUN CABE JAMU MENGGUNAKAN METODE K-NEAREST NEIGHBOR (KNN) DENGAN  EKSTRAKSI FITUR WARNA HSV
                     </h3>
                     ''',
                     unsafe_allow_html= True,
@@ -126,20 +126,13 @@ def main():
                         '''
                         <div>
                             <p>
-                                Klasifikasi citra merupakan proses menggabungkan atau mengumpulkan citra ke dalam suatu kelas yang setiap
-                                kelas memiliki karakteristik atau label khusus yang mewakili kelasnya. Klasifikasi daun kencur dengan
-                                inspeksi visual tentu kurang maksimal dikarenakan proses yang lebih lambat dan dapat menyebabkan
-                                inkonsistensi antar pengamat. Kencur merupakan tanaman obat yang bernilai ekonomis yang tinggi seihngga
-                                banyak dibudidayakan. Tetapi banyak petani tanaman kencur yang gagal panen karena serangan hama penyakit
-                                tanaman kencu terutama pada daun. Maka dari itu diperlukan sistem yang dapat mengklasifikasikan penyakit
-                                pada daun. Dataset yang digunakan adalah data daun kencur yang diambila secara langsung dengan jumlah 3000
-                                data dan memiliki 3 kelas yaitu daun sehat, bercak daun, hama daun. Metode K-Nearest Neighbor (KNN) dengan
-                                ekstraksi fitur warna sering digunakan untuk klasifikasi citra. Ekstraksi Fitur Warna merupakan ruang warna
-                                yang cocok untuk mengidentifikasi warna-warna dasar yang akan digunakan pada penelitian sebagai identifikasi
-                                cahaya warna dan meenoleransi perubahan intensitas cahaya. Hasil dari Ekstraksi Fitur Warna digunakan sebgai
-                                data input untuk klasifikasi menggunakan metode K-Nearest Neighbor (KNN) yang Diharapkan dari hasil
-                                penelitian ini dengan metode yang diusulkan menghasilkan nilai akurasi lebih dari 70% dalam klasifikasi daun
-                                kencur.
+                                Cabe Jamu (Piper retrofractum Vahl) tergolong pada jenis sirih-sirihan 
+                                atau piperaceae yang dibudidayakan di lahan kering dan iklim yang tropis. 
+                                Mayoritas tanaman ini tumbuh secara liar di pekarangan.
+                                Banyak sekali manfaat yang dimiliki cabe jamu yang masih jarang diketahui oleh banyak masyarakat.
+                                Beberapa manfaat dan khasiat pada daun cabe jamu yaitu untuk mengatasi tekanan darah rendah,
+                                masuk angin, lemah syahwat dan juga membersihkan rahim setelah melahirkan.
+                                Pada proses pembuatan jamu atau obat, bagian yang digunakan adalah buah, akar, dan daun tetapi harus dikeringkan terlebih dahulu.
                             </p>
                         </div>
                         ''',
@@ -164,7 +157,7 @@ def main():
             if selected == "Preprocessing": # Cek pilihan user
                 ms_20() # Tambahkan margin
                 prn_judul(
-                    "Data Citra Daun Kencur", 
+                    "Data Citra Daun Cabe Jamu", 
                     size= 3, 
                     line= True
                 ) # Tampilkan judul
@@ -250,70 +243,70 @@ def main():
         # -----------------------------------------------
         
         # Try-catch
-        try:
-            if selected == "Augmentasi": # Cek pilihan user
-                ms_20() # Tambahkan margin
-                prn_judul(
-                    "Augmentasi Gambar",
-                    size= 3,
-                    line= True
-                ) # Tampilkan judul
+        # try:
+        #     if selected == "Augmentasi": # Cek pilihan user
+        #         ms_20() # Tambahkan margin
+        #         prn_judul(
+        #             "Augmentasi Gambar",
+        #             size= 3,
+        #             line= True
+        #         ) # Tampilkan judul
                 
-                left, right = ml_right() # Layouting tampilan web
-                # Tampilan layout kiri
-                with left:
-                    prn_caption(
-                        "Setting Parameter",
-                        3,
-                    )
-                    ms_20() # Tambahkan margin
-                    # Buat objek untuk input number
-                    count_img = st.number_input(
-                        "Jumlah Data/Kelas",
-                        min_value= 1,
-                        max_value= 5000,
-                        value= 1000,
-                        step= 50,
-                        key= "Number input untuk target augmentasi",
-                    )
-                    ms_20() # Tambahkan margin
-                    # Button untuk menjalankan proses augmentasi
-                    btn_augment = st.button(
-                        "Submit",
-                        use_container_width= True,
-                        key= "Button untuk trigger proses augmentasi",
-                    )
-                # Tampilan layout kanan
-                with right:
-                    # Cek status dari btn_augment
-                    if btn_augment:
-                        # Ubah status session state
-                        ss.stts_augment = True
-                        # Menampilkan spinner program bar
-                        with st.spinner("Augmentasi citra sedang berlangsung..."):
-                            # Dapatkan path gambar yg telah di resize
-                            path_resized_img = get_csv("processed/dataframe/path_resized.csv")
-                            # Perulangan untuk setiap label dalam data
-                            for label in path_resized_img["label"].unique():
-                                PATH = f"processed/resized/{label}"
-                                # Lakukan augmentasi pada data train
-                                augment_image(PATH, count_img)
-                            # Dapatkan path gambar yg telah di augmentasi
-                            path_augment_img = get_filepath("processed/resized", "path_augment")
-                            show_images(path_augment_img) # Tampilkan gambar yg telah diproses
-                    elif ss.stts_augment:
-                        path_augment_img = get_csv("processed/dataframe/path_augment.csv")
-                        show_images(path_augment_img) # Tampilkan gambar yg telah diproses
-        # Exception
-        except Exception as e:
-            ms_20() # Tambahkan margin
-            with ml_main(): # Tampilan sistem
-                st.error("Terjadi masalah...")
-                # Cek kondisi status error
-                if stts_error:
-                    st.exception(e) # Tampilkan detail error
-                else:
-                    pass
+        #         left, right = ml_right() # Layouting tampilan web
+        #         # Tampilan layout kiri
+        #         with left:
+        #             prn_caption(
+        #                 "Setting Parameter",
+        #                 3,
+        #             )
+        #             ms_20() # Tambahkan margin
+        #             # Buat objek untuk input number
+        #             count_img = st.number_input(
+        #                 "Jumlah Data/Kelas",
+        #                 min_value= 1,
+        #                 max_value= 5000,
+        #                 value= 1000,
+        #                 step= 50,
+        #                 key= "Number input untuk target augmentasi",
+        #             )
+        #             ms_20() # Tambahkan margin
+        #             # Button untuk menjalankan proses augmentasi
+        #             btn_augment = st.button(
+        #                 "Submit",
+        #                 use_container_width= True,
+        #                 key= "Button untuk trigger proses augmentasi",
+        #             )
+        #         # Tampilan layout kanan
+        #         with right:
+        #             # Cek status dari btn_augment
+        #             if btn_augment:
+        #                 # Ubah status session state
+        #                 ss.stts_augment = True
+        #                 # Menampilkan spinner program bar
+        #                 with st.spinner("Augmentasi citra sedang berlangsung..."):
+        #                     # Dapatkan path gambar yg telah di resize
+        #                     path_resized_img = get_csv("processed/dataframe/path_resized.csv")
+        #                     # Perulangan untuk setiap label dalam data
+        #                     for label in path_resized_img["label"].unique():
+        #                         PATH = f"processed/resized/{label}"
+        #                         # Lakukan augmentasi pada data train
+        #                         augment_image(PATH, count_img)
+        #                     # Dapatkan path gambar yg telah di augmentasi
+        #                     path_augment_img = get_filepath("processed/resized", "path_augment")
+        #                     show_images(path_augment_img) # Tampilkan gambar yg telah diproses
+        #             elif ss.stts_augment:
+        #                 path_augment_img = get_csv("processed/dataframe/path_augment.csv")
+        #                 show_images(path_augment_img) # Tampilkan gambar yg telah diproses
+        # # Exception
+        # except Exception as e:
+        #     ms_20() # Tambahkan margin
+        #     with ml_main(): # Tampilan sistem
+        #         st.error("Terjadi masalah...")
+        #         # Cek kondisi status error
+        #         if stts_error:
+        #             st.exception(e) # Tampilkan detail error
+        #         else:
+        #             pass
 
         # EKSTRAKSI FITUR
         # -----------------------------------------------
@@ -329,7 +322,7 @@ def main():
                 ) # Tampilkan judul
                 
                 # Dapatkan DataFrame dari citra yg akan di ekstraksi fitur
-                df_img = get_csv("processed/dataframe/path_augment.csv")
+                df_img = get_csv("processed/dataframe/path_resized.csv")
                 # Buat dataframe kosong untuk menampung hasil pelatihan
                 data_features = pd.DataFrame(columns= ["filename", "hue", "saturation", "value", "label"])
                 # Loop untuk mengambil setiap label dalam DataFrame
@@ -388,13 +381,13 @@ def main():
                         min_value= 1,
                         step= 1,
                         max_value= int(len(data) / 2),
-                        value= 5,
+                        value= 3,
                         key= "Number input untuk k tetangga terdekat",
                     )
                     kfold = st.selectbox(
                         "Pilih jumlah Fold",
                         ["4-Fold", "5-Fold", "10-Fold"],
-                        index= 1,
+                        index= 2,
                         key= "Selectbox untuk memilih jumlah subset Fold",
                     )
                     # Branching nilai berdasarkan value kfold
@@ -445,10 +438,9 @@ def main():
                     all_y_test = pickle.load(file)
                 with open('processed/picklefile/all_y_pred.pkl', 'rb') as file:
                     all_y_pred = pickle.load(file)
-
                 with open('processed/picklefile/all_score.pkl', 'rb') as file:
                     score_proba = pickle.load(file)
-                
+                    
                 for fold, (y_test, y_pred) in enumerate(zip(all_y_test, all_y_pred)):
                     LABELS = np.unique(y_test)
                     num_classes = len(LABELS)
@@ -485,7 +477,7 @@ def main():
                             plt.title('ROC Curve')
                             plt.legend(loc="lower right")
                             st.pyplot()
-
+                            
         # Exception
         except Exception as e:
             ms_20() # Tambahkan margin
@@ -539,14 +531,14 @@ def main():
 
                         # Simpan nilai median masing-masing channel
                         features_data = np.array([[med_H, med_S, med_V]])
-                        # data = get_csv("processed/dataframe/features.csv")
-                        # X_train, y_train = data.iloc[:, 1:4].values, data["label"].values
+                        data = get_csv("processed/dataframe/features.csv")
+                        X_train, y_train = data.iloc[:, 1:4].values, data["label"].values
 
-                        # knn = KNeighborsClassifier()
-                        # knn.fit(X_train, y_train)
+                        knn = KNeighborsClassifier()
+                        knn.fit(X_train, y_train)
 
-                        with open("processed/picklefile/knn_model.pkl", "rb") as file:
-                            knn = pickle.load(file)
+                        # with open("processed/picklefile/knn_model.pkl", "rb") as file:
+                        #     knn = pickle.load(file)
 
                         result = knn.predict(features_data)
                         st.caption("## Hasil Prediksi")
